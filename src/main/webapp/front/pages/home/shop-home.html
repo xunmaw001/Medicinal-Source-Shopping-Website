@@ -1,0 +1,377 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>boo2</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="shortcut icon" type="image/x-icon" href="../../assets/img/favicon.ico">
+		<!-- Place favicon.ico in the root directory -->
+		<link rel="stylesheet" href="../../assets/css/original/bootstrap.min.css">
+		<!-- animate css -->
+		<link rel="stylesheet" href="../../assets/css/original/animate.css">
+		<!-- jquery-ui.min css -->
+		<link rel="stylesheet" href="../../assets/css/original/jquery-ui.min.css">
+		<!-- meanmenu css -->
+		<link rel="stylesheet" href="../../assets/css/original/meanmenu.min.css">
+		<!-- owl.carousel css -->
+		<link rel="stylesheet" href="../../assets/css/original/owl.carousel.css">
+		<link rel="stylesheet" href="../../assets/css/original/swiper.min.css"/>
+		<!-- slick slider css -->
+		<link rel="stylesheet" href="../../assets/css/original/slick.css">
+		<!-- font-awesome css -->
+		<link rel="stylesheet" href="../../assets/css/original/font-awesome.min.css">
+		<!-- style css -->
+		<link rel="stylesheet" href="../../assets/css/original/style.css">
+		<!-- responsive css -->
+		<link rel="stylesheet" href="../../assets/css/original/responsive.css">
+		<!-- modernizr js -->
+		<script src="../../assets/js/relys/modernizr-2.8.3.min.js"></script>
+		<style type="text/css">
+			.product-nav li {
+				color: #0082df;
+				font-size: 20px;
+				font-weight: 600;
+				text-transform: capitalize;
+				position: relative;
+			}
+
+			.product-nav li span {
+				color: #444;
+				font-size: 20px;
+				font-weight: 600;
+				margin-left: 20px;
+				position: relative;
+			}
+			.product-nav li span::before {
+				background: #666 none repeat scroll 0 0;
+				content: "";
+				height: 13px;
+				position: absolute;
+				left: -10px;
+				top: 8px;
+				width: 2px;
+			}
+			.product-img img{
+				width: 100%;
+				height: 300px;
+				object-fit: cover;
+			}
+			.blog-img img {
+			  width: 100%;
+			  height: 210px;
+			  object-fit: cover;
+			}
+			.featured-area, .banner-area{
+				margin-top: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<!-- slider-area start -->
+			<div class="swiper-container" style="width: 100%;height: 400px;">
+			    <div class="swiper-wrapper">
+			        <div class="swiper-slide" v-for="(item,i) in banners"><img :src="item.value" style="width: 100%;height: 100%;object-fit: cover;"/></div>
+			    </div>
+				<div class="swiper-pagination"></div><!--分页器。如果放置在swiper-container外面，需要自定义样式。-->
+				<div class="swiper-button-prev"></div><!--左箭头。如果放置在swiper-container外面，需要自定义样式。-->
+				<div class="swiper-button-next"></div><!--右箭头。如果放置在swiper-container外面，需要自定义样式。-->
+			</div>
+			<!-- featured-area start -->
+			<!-- banner-area start -->
+			<div class="banner-area bg-color">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="section-title white text-center">
+								<h2 style="color: #000;">药品信息推荐</h2>
+								<span>HOT RECOMMEND</span>
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12" v-if="yaopinxinxirecommend.length>0">
+							<div class="row">
+								<div class="col-md-6 col-sm-6" @click="onPageTap(`../yaopinxinxi/detail.html?id=${yaopinxinxirecommend[0].id}`)" v-if="yaopinxinxirecommend[0]">
+									<div class="single-banner banner-item2 banner-item2_1">
+										<a class="banner-thumb" v-if="yaopinxinxirecommend[0]">
+											<img :src="yaopinxinxirecommend[0].yaopintupian.split(',')[0]" alt="" />
+										</a>
+										<div class="banner-caption">
+											<span class="shop-cat-subtitle">{{yaopinxinxirecommend[0].yaopinmingcheng}}</span>
+											<h2><a href="#">{{yaopinxinxirecommend[0].price}} RMB</a></h2>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-sm-6" @click="onPageTap(`../yaopinxinxi/detail.html?id=${yaopinxinxirecommend[1].id}`)" v-if="yaopinxinxirecommend[1]">
+									<div class="single-banner banner-item2 banner-item2_2">
+										<a class="banner-thumb" v-if="yaopinxinxirecommend[2]">
+											<img :src="yaopinxinxirecommend[1].yaopintupian.split(',')[0]" alt="" />
+										</a>
+										<div class="banner-caption">
+											<span class="shop-cat-subtitle">{{yaopinxinxirecommend[1].yaopinmingcheng}}</span>
+											<h2><a href="#">{{yaopinxinxirecommend[1].price}} RMB</a></h2>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-sm-6" @click="onPageTap(`../yaopinxinxi/detail.html?id=${yaopinxinxirecommend[2].id}`)" v-if="yaopinxinxirecommend[2]">
+									<div class="single-banner banner-item2 banner-marg banner-item2_3">
+										<a class="banner-thumb" v-if="yaopinxinxirecommend[2]">
+											<img :src="yaopinxinxirecommend[2].yaopintupian.split(',')[0]" alt="" />
+										</a>
+										<div class="banner-caption">
+											<span class="shop-cat-subtitle">{{yaopinxinxirecommend[2].yaopinmingcheng}}</span>
+											<h2><a href="#">{{yaopinxinxirecommend[2].price}} RMB</a></h2>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-sm-6" @click="onPageTap(`../yaopinxinxi/detail.html?id=${yaopinxinxirecommend[3].id}`)" v-if="yaopinxinxirecommend[3]">
+									<div class="single-banner banner-item2 banner-marg banner-item2_3">
+										<a class="banner-thumb" v-if="yaopinxinxirecommend[3]">
+											<img :src="yaopinxinxirecommend[2].yaopintupian.split(',')[0]" alt="" />
+										</a>
+										<div class="banner-caption">
+											<span class="shop-cat-subtitle">{{yaopinxinxirecommend[3].yaopinmingcheng}}</span>
+											<h2><a href="#">{{yaopinxinxirecommend[3].price}} RMB</a></h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-6" @click="onPageTap(`../yaopinxinxi/detail.html?id=${yaopinxinxirecommend[4].id}`)" v-if="yaopinxinxirecommend[4]">
+							<div class="single-banner banner-item2 banner-item2_4">
+								<a class="banner-thumb" v-if="yaopinxinxirecommend[4]">
+									<img :src="yaopinxinxirecommend[3].yaopintupian.split(',')[0]" alt="" />
+								</a>
+								<div class="banner-caption">
+									<span class="shop-cat-subtitle">{{yaopinxinxirecommend[4].yaopinmingcheng}}</span>
+									<h2><a href="#">{{yaopinxinxirecommend[4].price}} RMB</a></h2>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- featured-area end -->
+			<!-- latest-blog-area start -->
+			<div class="featured-area">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="product-tab">
+								<!-- Nav tabs -->
+								<ul class="product-nav" role="tablist">
+									<li role="presentation" class="active">药品信息<span @click="onPageTap('../yaopinxinxi/list.html')">查看更多</span></li>
+								</ul>
+								<!-- Tab panes -->
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane active" id="home">
+										<div class="row">										
+											<div class="col-md-4" v-for="(item, i) in yaopinxinxiList" :key="i" @click="onPageTap(`../yaopinxinxi/detail.html?id=${item.id}`)" style="margin-bottom:40px;">
+												<div class="single-product">
+													<div class="product-img" v-if="item.yaopintupian">
+														<img :src="item.yaopintupian.split(',')[0]" alt="" />
+													</div>
+													<div class="product-content">
+														<h3 @click="onPageTap(`../yaopinxinxi/detail.html?id=${item.id}`)">{{item.yaopinmingcheng}}</h3>
+														<div class="price">
+															<span>{{item.price}} RMB</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- latest-blog-area start -->
+			<div class="latest-blog-area pad-60" style="margin-bottom: 90px;padding: 60px 0;">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="section-title white text-center">
+								<h2>新闻资讯</h2>
+								<img src="../../assets/img/section-title-white.png" alt="" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="blog-curosel">
+							<div class="col-md-12" v-for="(item, i) in news" :key="i">
+								<div class="blog-wrapper">
+									<div class="blog-img">
+										<a :href="`javascript: onPageTap('../news/news-detail.html?id=${item.id}&tablename=news')`"><img :src="item.picture" alt="" /></a>
+										<span class="blog-date">order <br /> {{i+1}}</span>
+									</div>
+									<div class="blog-content">
+										<h3><a :href="`javascript: onPageTap('../news/news-detail.html?id=${item.id}&tablename=news')`">{{item.title}}</a></h3>
+										<a class="read-more" :href="`javascript: onPageTap('../news/news-detail.html?id=${item.id}&tablename=news')`">阅读更多 <i class="fa fa-angle-right"></i> <i class="fa fa-angle-right"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- all js here -->
+		<!-- vue js -->
+		<!-- jquery latest version -->
+		<script src="../../assets/js/relys/jquery-1.12.0.min.js"></script>
+		<script src="../../assets/js/relys/jquery.meanmenu.js"></script>
+		<script src="../../assets/js/relys/jquery-ui.min.js"></script>
+		<script src="../../assets/js/relys/bootstrap.min.js"></script>
+		<script src="../../assets/js/relys/owl.carousel.min.js"></script>
+		<script src="../../assets/js/relys/swiper.min.js"></script>
+		<script src="../../assets/js/relys/wow.min.js"></script>
+		<script src="../../assets/js/relys/plugins.js"></script>
+		<script src="../../assets/js/vue.js"></script>
+		<script src="../../assets/js/api/api.js"></script>
+		<script src="../../assets/js/api/shop.js"></script>
+		<script src="../../assets/js/api/tplist.js"></script>
+		<script src="../../assets/js/api/defaultuser.js"></script>
+		<div id="script"></div>
+		<script type="text/javascript">
+			function mainSlider() {
+				var BasicSlider = $('.slider-active');
+				BasicSlider.on('init', function (e, slick) {
+					var $firstAnimatingElements = $('.single-slider:first-child').find('[data-animation]');
+					doAnimations($firstAnimatingElements);
+				});
+				BasicSlider.on('beforeChange', function (e, slick, currentSlide, nextSlide) {
+					var $animatingElements = $('.single-slider[data-slick-index="' + nextSlide + '"]').find('[data-animation]');
+					doAnimations($animatingElements);
+				});
+				BasicSlider.slick({
+					autoplay: true,
+					autoplaySpeed: 10000,
+					dots: true,
+					fade: true,
+					arrows: false,
+					responsive: [
+						{ breakpoint: 767, settings: { dots: false, arrows: false } }
+					]
+				});
+			
+				function doAnimations(elements) {
+					var animationEndEvents = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+					elements.each(function () {
+						var $this = $(this);
+						var $animationDelay = $this.data('delay');
+						var $animationType = 'animated ' + $this.data('animation');
+						$this.css({
+							'animation-delay': $animationDelay,
+							'-webkit-animation-delay': $animationDelay
+						});
+						$this.addClass($animationType).one(animationEndEvents, function () {
+							$this.removeClass($animationType);
+						});
+					});
+				}
+			}
+			var app = new Vue({
+				el: "#app",
+				data: {
+					banners: [],
+					yaopinxinxirecommend: [],
+					yaopinxinxiList: [],
+					news: [],
+					liuyan: "",
+				},
+				methods: {
+					onPageTap(url) {
+						window.location.href = url;
+					},
+				},
+				created(){
+					var scripts = [
+						'../../assets/js/relys/main.js'
+					]
+					setTimeout(()=> {
+						scripts.forEach(ele => {
+							var new_element=document.createElement("script");
+							new_element.setAttribute("type","text/javascript");
+							new_element.setAttribute("src",ele);// 在这里引入了a.js
+							$('#script').append(new_element);
+						})
+					},500)
+					
+					tpPage( "config",(res) => {
+						this.banners = res.data.list
+						if(this.banners.length==0){
+							this.banners.push({value: "../../assets/img/banner/banner1.jpg"})
+						}else{
+							this.banners.forEach(item => {
+								if(!item.value){
+									item.value = "../../assets/img/banner/banner1.jpg"
+								}
+							})
+						}
+						console.log(this.banners)
+						this.$nextTick(() => {
+							var mySwiper = new Swiper ('.swiper-container', {
+							    loop: false, // 循环模式选项
+							    autoplay: {
+									autoplay: true,
+							        delay: 3000,
+							        stopOnLastSlide: false,
+							        disableOnInteraction: true,
+							     },
+							    // 如果需要前进后退按钮
+							    navigation: {
+							      nextEl: '.swiper-button-next',
+							      prevEl: '.swiper-button-prev',
+							    },
+								pagination: {
+								    el: '.swiper-pagination',
+								},
+							})  
+						})
+					})
+					tplist("news", 1, 100, false, false, (res) => {
+						this.news = res.data.list
+						this.$nextTick(() => {
+							$(".blog-curosel").owlCarousel({
+							    autoPlay: false,
+								  slideSpeed:3000,
+								  pagination:false,
+								  navigation:true,
+							    items : 3,
+								  /* transitionStyle : "fade", */    /* [This code for animation ] */
+								  navigationText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+							    itemsDesktop : [1199,3],
+								  itemsDesktopSmall : [980,2],
+								  itemsTablet: [768,1],
+								  itemsMobile : [479,1],
+							});
+						})
+					})
+					
+					recommend('yaopinxinxi', false, (res) => {
+						if (res.code == 0) {
+							this.yaopinxinxiList = res.data.list
+						}
+					})
+					this.recommend = null
+					this.recommend = null
+					var type = true
+					recommend('yaopinxinxi', type, (res) => {
+						if (res.code == 0) {
+							this.yaopinxinxirecommend = res.data.list
+						}
+					})
+					this.recommend = null
+					this.recommend = null
+				}
+			})
+			function onPageTap(url){
+				window.location.href = url
+			}
+		</script>
+	</body>
+</html>

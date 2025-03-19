@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS ssmc5uj7;
+
